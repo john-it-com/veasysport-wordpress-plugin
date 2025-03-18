@@ -40,24 +40,18 @@ function veasy_shop($attr)
     }
 
     return <<<HTML
-<style>
-    #shopIframe {
-        width: 100%;
-        height: 100vh;
-    }
-</style>
 <iframe
-    id="veasyShopIframe"
+    id="veasySportShopIframe"
     src="{$url}"
     scrolling="no"
     sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
-    style="border: none; "
+    style="border: none;"
 ></iframe>
 
 <script type="module">
     import { initialize } from "https://cdn.jsdelivr.net/npm/@open-iframe-resizer/core@latest/dist/index.js";
 
-    initialize({}, "#veasyShopIframe");
+    initialize({}, "#veasySportShopIframe");
 </script>
 HTML;
 

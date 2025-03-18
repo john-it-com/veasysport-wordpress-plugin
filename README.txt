@@ -1,4 +1,4 @@
-=== VeasySport Verbandsverwaltung für Sportverbände und Vereine ===
+=== VeasySport Lizenz- und Veranstaltungsmanagement ===
 
 Contributors:      johnitcom
 Requires at least: 5.0
@@ -13,14 +13,11 @@ Binden Sie den VeasySport Shop einfach in Ihre eigene Webseite ein.
 == Description ==
 
 Mit diesem Plugin kann der VeasySport Shop in die eigene Wordpress-Webseite eingebunden werden.
-
-= Funktionen =
-
-VeasySport für Wordpress enthält folgende Funktionen
+VeasySport für Wordpress enthält folgende Funktionen:
 
 * Anzeige des VeasySport-Shop in Beiträgen oder Seiten mithilfe eines Shortcodes.
 
-= Installation =
+== Installation ==
 
 1. Rufen Sie in WordPress die Funktion **Plugins > Neu hinzufügen** auf.
 2. Suchen Sie nach **VeasySport**.
@@ -28,5 +25,11 @@ VeasySport für Wordpress enthält folgende Funktionen
 4. Erstellen Sie einen Beitrag oder eine Seite. Fügen Sie anschließend
    einen [Shortcode-Block](https://wordpress.org/documentation/article/shortcode-block/)
    zur Seite hinzu. Geben Sie als Shortcode folgende Code an
-   `[veasysport_shop shop_url="IHRE_SHOP_URL" ]` und ersetzen Sie den Wert
+   `[veasysport_shop shop_url="IHRE_SHOP_URL"]` und ersetzen Sie den Wert
    `IHRE_SHOP_URL` durch die Einbettungs-Adresse für Ihren Shop.
+
+== Screenshots ==
+
+1. So könnte Ihre Shop-Seite mit VeasySport aussehen
+2. Anzeige der Shop-Seite mithilfe eines Shortcodes
+3. Einbettungsadresse der Shop-Seite in VeasySport
