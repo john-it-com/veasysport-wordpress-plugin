@@ -2,7 +2,7 @@
 /**
  * Plugin main file.
  *
- * @copyright 2024 JOHN IT GmbH
+ * @copyright 2025 JOHN IT GmbH
  * @license   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link      https://veasysport.com
  *
@@ -19,7 +19,48 @@
 
 namespace JohnIt\VeasySport;
 
-wp_oembed_add_provider( 'https://djjv.veasysport.cloud/*', 'https://djjv.veasysport.cloud/oembed' );
-wp_oembed_add_provider( 'https://dbb.veasysport.cloud/*', 'https://dbb.veasysport.cloud/oembed' );
-wp_oembed_add_provider( 'https://dsb.veasysport.cloud/*', 'https://dsb.veasysport.cloud/oembed' );
-wp_oembed_add_provider( 'https://dsv.veasysport.cloud/*', 'https://dsv.veasysport.cloud/oembed' );
+function veasy_shop($attr)
+{
+    $options = shortcode_atts(array(
+        'shop_url' => null,
+        'tags' => null
+    ), $attr);
+
+    if($options['shop_url'] === null) {
+        return "Bitte geben Sie den Parameter 'shop_url' an.";
+    }
+
+    $url = $options['shop_url'];
+    $tags = $options['tags'];
+
+    if($tags !== null) {
+        $url = $url . "?" . http_build_query([
+            'tags' => $tags
+        ]);
+    }
+
+    return <<<HTML
+<style>
+    #shopIframe {
+        width: 100%;
+        height: 100vh;
+    }
+</style>
+<iframe
+    id="veasyShopIframe"
+    src="{$url}"
+    scrolling="no"
+    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+    style="border: none; "
+></iframe>
+
+<script type="module">
+    import { initialize } from "https://cdn.jsdelivr.net/npm/@open-iframe-resizer/core@latest/dist/index.js";
+
+    initialize({}, "#veasyShopIframe");
+</script>
+HTML;
+
+}
+
+add_shortcode('veasysport_shop', __NAMESPACE__ . '\\veasy_shop');
