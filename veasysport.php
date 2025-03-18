@@ -13,13 +13,13 @@
  * Version:     1.0.0
  * Author:      JOHN IT GmbH
  * Author URI:  https://john-it.com
- * License:     https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * License:     GPL
  * Text Domain: veasysport
  */
 
-namespace JohnIt\VeasySport;
+namespace JohnIt\VeasySport\Wordpress;
 
-function veasy_shop($attr)
+function veasysport_shop($attr)
 {
     $options = shortcode_atts(array(
         'shop_url' => null,
@@ -39,22 +39,35 @@ function veasy_shop($attr)
         ]);
     }
 
-    return <<<HTML
+    return "
 <iframe
-    id="veasySportShopIframe"
-    src="{$url}"
-    scrolling="no"
-    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
-    style="border: none;"
+    id='veasySportShopIframe'
+    src='{$url}'
+    scrolling='no'
+    sandbox='allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox'
+    style='border: none;'
 ></iframe>
 
-<script type="module">
-    import { initialize } from "https://cdn.jsdelivr.net/npm/@open-iframe-resizer/core@latest/dist/index.js";
+<script type='module'>
+    import { initialize } from '" . plugin_dir_url(__FILE__) . "assets/js/open-iframe-resizer.js';
 
-    initialize({}, "#veasySportShopIframe");
+    initialize({}, '#veasySportShopIframe');
 </script>
-HTML;
+";
 
 }
 
-add_shortcode('veasysport_shop', __NAMESPACE__ . '\\veasy_shop');
+function veasysport_enqueue_scripts()
+{
+    wp_enqueue_script(
+        'veasysport-iframe-resizer',
+        plugin_dir_url(__FILE__) . 'assets/js/open-iframe-resizer.js',
+        array(),
+        '1.0.0',
+        true
+    );
+}
+
+add_shortcode('veasysport_shop', __NAMESPACE__ . '\\veasysport_shop');
+
+add_action('wp_enqueue_scripts', __NAMESPACE__.'\\veasysport_enqueue_scripts');
